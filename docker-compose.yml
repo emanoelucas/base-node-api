@@ -20,3 +20,19 @@ services:
       PROJECT_NAME: ${PROJECT_NAME}
     env_file:
       - .env
+  
+  postgres:
+    image: 'postgres:alpine'
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+volumes:
+  dbdata: {}
