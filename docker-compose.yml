@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: docker/node/DockerFile
+    image: ${PROJECT_NAME}
+    container_name: ${PROJECT_NAME}
+    command: npm run serve
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      PORT: ${PORT}
+      PROJECT_NAME: ${PROJECT_NAME}
+    env_file:
+      - .env
