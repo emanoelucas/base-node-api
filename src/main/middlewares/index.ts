@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 
 import cors from "./cors"
 import jsonParser from "./json-parser"
-import customMiddlewate from "./custom-middlewate";
+import customMiddlewate from "./custom-middleware";
 
 export const setupMiddlewares = (app: Express) => {
 	app.use(cors)
