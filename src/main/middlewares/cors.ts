@@ -1,3 +1,7 @@
 import cors from 'cors'
 
-export default cors()
+const corsOptions = {
+  origin: '*',
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+}
+export default cors(corsOptions)
