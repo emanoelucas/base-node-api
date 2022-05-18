@@ -3,6 +3,8 @@ import express, { Express } from 'express'
 import database from './../../infra/sequelize-database'
 import { setupMiddlewares } from './../middlewares'
 import { setupRoutes } from './../routes'
+import generalErrorHandler from './../erros/general-error-handler'
+import notFoundErrorHandler from './../erros/not-found-error-handler'
 
 class App {
 
@@ -18,6 +20,7 @@ class App {
 
 			this.initMiddlewares()
 			this.initRoutes()
+			this.errorHandler()
 
 			return this.app.listen(process.env.PORT)    
 
@@ -32,6 +35,11 @@ class App {
 
 	public initRoutes = () => {
 	  setupRoutes(this.app)
+	}
+
+	public errorHandler = () => {
+		this.app.use(notFoundErrorHandler)
+		this.app.use(generalErrorHandler)
 	}
 
 	public initDatabase = async () => {
