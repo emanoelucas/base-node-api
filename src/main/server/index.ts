@@ -3,8 +3,9 @@ import express, { Express } from 'express'
 import database from './../../infra/sequelize-database'
 import { setupMiddlewares } from './../middlewares'
 import { setupRoutes } from './../routes'
-import generalErrorHandler from './../erros/general-error-handler'
-import notFoundErrorHandler from './../erros/not-found-error-handler'
+import generalErrorHandler from './erros/general-error-handler'
+import notFoundErrorHandler from './erros/not-found-error-handler'
+import defaultLogger from '../../utils/logger/default-logger'
 
 class App {
 
@@ -19,6 +20,7 @@ class App {
 			await this.initDatabase()
 
 			this.initMiddlewares()
+			this.logger()
 			this.initRoutes()
 			this.errorHandler()
 
@@ -40,6 +42,10 @@ class App {
 	public errorHandler = () => {
 		this.app.use(notFoundErrorHandler)
 		this.app.use(generalErrorHandler)
+	}
+
+	public logger = () => {
+		this.app.use(defaultLogger)
 	}
 
 	public initDatabase = async () => {
