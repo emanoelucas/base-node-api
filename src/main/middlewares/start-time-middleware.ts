@@ -1,6 +1,6 @@
-import { Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
-export default (request: any, response: Response, next: NextFunction) => {
-  request.start = Date.now()
+export default (req: Request, res: Response, next: NextFunction) => {
+  req.headers[`${process.env.TIME_HEADER}`] = Date.now().toString()
   next()
 }

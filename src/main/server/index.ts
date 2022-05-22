@@ -5,7 +5,7 @@ import { setupMiddlewares } from './../middlewares'
 import { setupRoutes } from './../routes'
 import generalErrorHandler from './erros/general-error-handler'
 import notFoundErrorHandler from './erros/not-found-error-handler'
-import defaultLogger from '../../utils/logger/default-logger'
+import { logger } from '../../utils/logger'
 
 class App {
 
@@ -19,8 +19,9 @@ class App {
 			
 			await this.initDatabase()
 
+			this.initLogger()
+
 			this.initMiddlewares()
-			this.logger()
 			this.initRoutes()
 			this.errorHandler()
 
@@ -44,8 +45,8 @@ class App {
 		this.app.use(generalErrorHandler)
 	}
 
-	public logger = () => {
-		this.app.use(defaultLogger)
+	public initLogger = () => {
+		this.app.use(logger)
 	}
 
 	public initDatabase = async () => {

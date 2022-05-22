@@ -1,24 +1,30 @@
-import { createLogger, format, transports } from 'winston'
+import errorLogMessage from "./messages/error-log-message";
+import infoLogMessage from "./messages/info-log-message";
 
-const { combine, timestamp, printf } = format
+export const logger = (req: any, res: any, next: any) => {
+  
+  var oldWrite = res.write
+  var oldEnd = res.end
+  var chunks: any[] = []
 
-const levels = {
-  fatal: 0,
-  error: 1,
-  info: 2
+  res.write = function (chunk: any) {
+    chunks.push(Buffer.from(chunk))
+    oldWrite.apply(res, arguments)
+  }
+  res.end = function (chunk: any) {
+    if (chunk)
+      chunks.push(Buffer.from(chunk))
+    const responseBody = Buffer.concat(chunks).toString('utf8')
+    processLog(req, res, responseBody)
+    oldEnd.apply(res, arguments)
+  }
+  next()
 }
 
-const myFormat = printf(({ level, message, timestamp }) => {
-  return `[${level.toLocaleUpperCase()}]: ${message}, ${timestamp}.`
-});
-
-const logger = createLogger({
-  levels: levels,
-  format: combine(
-    timestamp(),
-    myFormat
-  ),
-  transports: [new transports.Console()]
-})
-
-export default logger
+function processLog (req: any, res: any, responseBody: any) {
+  if ( res.statusCode < 400 ) {
+    infoLogMessage(req.method, req.originalUrl, res.statusCode, req.headers[`${process.env.TIME_HEADER}`], responseBody, req.headers.host)
+    return
+  }
+  errorLogMessage(req.method, req.originalUrl, res.statusCode, req.headers[`${process.env.TIME_HEADER}`], responseBody, req.headers.host)
+}
