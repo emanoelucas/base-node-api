@@ -5,7 +5,7 @@ import bodyParser from 'body-parser'
 import cors from "./cors-middleware"
 import jsonParser from "./json-parser-middleware"
 import customMiddlewate from "./custom-middleware"
-import startTimeMiddleware from "./start-time-middleware";
+import startTimeMiddleware from "./start-time-middleware"
 
 export const setupMiddlewares = (app: Express) => {
 	app.use(startTimeMiddleware)
