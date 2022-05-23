@@ -1,13 +1,14 @@
-import { environment } from './environment'
+'use strict'
+
+require('dotenv').config()
 
 module.exports = {
-  host: environment.HOSTNAME,
-  username: environment.USERNAME,
-  password: environment.PASSWORD,
-  database: environment.DATABASE,
-  dialect: environment.DIALECT,
-  port: environment.PORT,
-  operatorsAliases: false,
+  host: process.env.DB_HOSTNAME,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  dialect: process.env.DB_DIALECT,
+  port: process.env.DB_PORT,
   logging: false,
   define: {
     timestamps: true,
