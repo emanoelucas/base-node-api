@@ -6,7 +6,9 @@ module.exports = {
       id: 1,
       name: 'emanoel',
       email: 'lucasrodrigues52@gmail.com',
-      password: '1234'
+      password: '1234',
+      created_at: new Date(),
+      updated_at: new Date()
     }]);
   },
 
