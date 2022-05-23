@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
 
-export default (request: Request, response: Response, next: NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction) => {
   next()
 }

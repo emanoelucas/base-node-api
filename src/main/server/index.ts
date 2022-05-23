@@ -32,26 +32,18 @@ class App {
 		}
 	}
 
-	public initMiddlewares = () => {
-		setupMiddlewares(this.app)
-	}
+	public initMiddlewares = () => setupMiddlewares(this.app)
 
-	public initRoutes = () => {
-	  setupRoutes(this.app)
-	}
+	public initRoutes = () => setupRoutes(this.app)
 
 	public errorHandler = () => {
 		this.app.use(notFoundErrorHandler)
 		this.app.use(generalErrorHandler)
 	}
 
-	public initLogger = () => {
-		this.app.use(logger)
-	}
+	public initLogger = () => this.app.use(logger)
 
-	public initDatabase = async () => {
-		return await database.connect()
-	}
+	public initDatabase = async () => await database.connect()
 
 }
 
