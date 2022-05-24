@@ -6,7 +6,9 @@ import { setupRoutes } from './../routes'
 import generalErrorHandler from './erros/general-error-handler'
 import notFoundErrorHandler from './erros/not-found-error-handler'
 import { logger } from '../../utils/logger'
+import * as dotenv from 'dotenv'
 
+dotenv.config()
 class App {
 
 	private app: Express

@@ -1,7 +1,3 @@
-'use strict'
-
-require('dotenv').config()
-
 module.exports = {
   host: process.env.DB_HOSTNAME,
   username: process.env.DB_USERNAME,

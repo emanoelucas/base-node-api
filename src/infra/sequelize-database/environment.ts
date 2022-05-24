@@ -1,6 +1,3 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
-
 export const environment = {
 	DATABASE: process.env.DB_DATABASE || 'postgres',
 	USERNAME: process.env.DB_USERNAME || 'postgres',
