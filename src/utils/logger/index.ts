@@ -23,8 +23,8 @@ export const logger = (req: any, res: any, next: any) => {
 
 function processLog (req: any, res: any, responseBody: any) {
   if ( res.statusCode < 400 ) {
-    infoLogMessage(req.method, req.originalUrl, res.statusCode, req.headers[`${process.env.TIME_HEADER}`], responseBody, req.headers.host)
+    infoLogMessage(req.method, req.originalUrl, res.statusCode, req.headers[`${process.env.HEADER_TIME_RESPONSE}`], responseBody, req.headers.host)
     return
   }
-  errorLogMessage(req.method, req.originalUrl, res.statusCode, req.headers[`${process.env.TIME_HEADER}`], responseBody, req.headers.host)
+  errorLogMessage(req.method, req.originalUrl, res.statusCode, req.headers[`${process.env.HEADER_TIME_RESPONSE}`], responseBody, req.headers.host)
 }
