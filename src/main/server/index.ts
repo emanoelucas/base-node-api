@@ -1,6 +1,6 @@
 import express, { Express } from 'express'
 
-import database from './../../infra/sequelize-database'
+import database from '../../infra/database'
 import { setupMiddlewares } from './../middlewares'
 import { setupRoutes } from './../routes'
 import generalErrorHandler from './erros/general-error-handler'
