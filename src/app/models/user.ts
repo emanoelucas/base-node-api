@@ -13,6 +13,9 @@ User.init({
 	name: {
 		type: DataTypes.STRING(128),
 		allowNull: false,
+		validate: {
+			isAlpha: true
+		}
 	},
 	email: {
 		type: new DataTypes.STRING(128),
@@ -21,7 +24,7 @@ User.init({
 			isEmail: true
 		}
 	},
-	password: {
+	hashedPassword: {
 		type: new DataTypes.STRING(128),
 		allowNull: false,
 	}
