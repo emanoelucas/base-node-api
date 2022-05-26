@@ -5,6 +5,11 @@ import HttpResponse from './../../../utils/http/response'
 
 export default (error: IHttpError, req: Request, res: Response, next: NextFunction) => {
   
+  if (error.name === 'SequelizeValidationError') {
+    const sequelizeError = error.errors?.shift()
+    error = sequelizeError.original ? sequelizeError.original : error
+  }
+
   const internalError = 500
   res.status(error.status || internalError)
   

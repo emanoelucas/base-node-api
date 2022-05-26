@@ -3,4 +3,5 @@ export interface IHttpError{
   name: string
   message: string
   stack?: string
+  errors?: Array<any>
 }
