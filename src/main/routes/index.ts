@@ -1,17 +1,15 @@
-import { Router, Express } from 'express'
-const routes = Router()
+import { Express } from 'express'
+
 
 export const setupRoutes = (app: Express) => {
   
-  app.use('/api', [
-      routes.get('/', (req, res, next) => {
+  app.use('/', (req, res, next) => {
         res.send(
           {
             status: 200,
             message: "OK"
           }
         )
-      })
-    ]
+    }
   )
 }
