@@ -1,23 +1,24 @@
 import User from '../../database/models/user'
+import MissingParamError from '../../../utils/erros/missing-param-error'
 
-import { NotFoundError, BadRequestError } from '../../../utils/http/erros'
-
-class LoadByEmail {
-  async load (email: string) {
+class LoadUserByEmail {
+  async load (email: string, options?: any) {
     
     if (!email) 
-      throw new BadRequestError(`No email provided`)
+      throw new MissingParamError(`email`)
     
-    const user = await User.findOne({
-      attributes: ['id', 'name', 'email'] ,
+    const defaultRule = {
       where: { email: email }
-    })
+    }
+    
+    if (options) {
+      Object.assign(defaultRule, options)
+    }
 
-    if (!user)
-      throw new NotFoundError(`Email address '${email}' not found on database`)
+    const user = await User.findOne(defaultRule)
 
     return user
   }
 }
 
-export default new LoadByEmail()
+export default new LoadUserByEmail()
