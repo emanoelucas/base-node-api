@@ -67,6 +67,15 @@ User.init({
 	createdAt: 'created_at',
 	updatedAt: 'updated_at',
 	deletedAt: 'deleted_at',
+	defaultScope: {
+		attributes: {
+			exclude: [
+				'password',
+				'deleted_at'
+			]
+		}
+	}
+})
 
 User.addHook('beforeValidate', (user: User, options) => {
   user.id = v4()
