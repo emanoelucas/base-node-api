@@ -15,10 +15,9 @@ export default (error: IHttpError, req: Request, res: Response, next: NextFuncti
   
   const response = {
     message: error.message,
-    data: {}
   }
 
-  res.send( HttpResponse.build(response, false) )
+  res.send( HttpResponse.fail(response) )
   
   error.stack ? console.log('\n', 'stack:', error.stack) : console.log('\n')
 }
