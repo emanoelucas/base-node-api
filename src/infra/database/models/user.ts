@@ -30,17 +30,34 @@ User.init({
 			isAlpha: true
 		}
 	},
+	lastName: {
+		type: DataTypes.STRING(128),
+		allowNull: false,
+		validate: {
+			isAlpha: true
+		}
+	},
+	phoneNumber: {
+		type: DataTypes.STRING(128),
+		allowNull: false
+	},
 	email: {
-		type: new DataTypes.STRING(128),
+		type: DataTypes.STRING(128),
 		allowNull: false,
 		unique: true,
 		validate: {
 			isEmail: true
 		}
 	},
-	hashedPassword: {
-		type: new DataTypes.STRING(128),
-		allowNull: false,
+	password: {
+		type: DataTypes.STRING(128),
+		allowNull: false
+	},
+	fullName: {
+		type: DataTypes.VIRTUAL,
+		get() {
+			return `${this.name} ${this.lastName}`
+		}
 	}
 },{
 	sequelize: connection,
