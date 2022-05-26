@@ -1,7 +1,9 @@
-import loadUserByEmail from "./load-by-email"
+import loadUserByEmail from "./load-user-by-email"
 import saveUser from "./save-user"
+import loadUserById from "./load-user-by-id"
 
 export {
   loadUserByEmail,
-  saveUser
+  saveUser,
+  loadUserById
 }
