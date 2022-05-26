@@ -1,12 +1,18 @@
 import { loadUserById } from '../../../infra/repositories/users'
 import { NotFoundError } from '../../../utils/http/erros'
+import uuidv4Validator from '../../../utils/validators/uuidv4-validator'
 class Retrieve {
   private loadUserById: typeof loadUserById
+  private uuidv4Validator: typeof uuidv4Validator
   constructor() {
     this.loadUserById = loadUserById
+    this.uuidv4Validator = uuidv4Validator
   }
 
   async run (id: string) {
+    
+    this.uuidv4Validator(id)
+    
     const user = await this.loadUserById.load(id)
     if (!user)
       throw new NotFoundError('User not found')
