@@ -62,6 +62,8 @@ User.init({
 },{
 	sequelize: connection,
 	timestamps: true,
+	underscored: true,
+	paranoid: true,
 	modelName: 'User',
 	tableName: 'users',
 	createdAt: 'created_at',
