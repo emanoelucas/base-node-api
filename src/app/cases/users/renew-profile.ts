@@ -1,14 +1,14 @@
 import { loadUserById } from '../../../infra/repositories/users'
 import uuidv4Validator from '../../../utils/validators/uuidv4-validator'
-import updateUser from '../../../infra/repositories/users/update-user'
+import updateUserProfile from '../../../infra/repositories/users/update-user-profile'
 import { NotFoundError } from '../../../utils/http/erros'
 
 class RenewProfile {
   private loadUserById: typeof loadUserById
-  private updateUser: typeof updateUser
+  private updateUserProfile: typeof updateUserProfile
   constructor() {
     this.loadUserById = loadUserById
-    this.updateUser = updateUser
+    this.updateUserProfile = updateUserProfile
   }
 
   async renew (id: string, name: string, lastName:string, phoneNumber: string, email: string) {
@@ -18,7 +18,7 @@ class RenewProfile {
     if (!user)
       throw new NotFoundError('User not found')
 
-    return await this.updateUser.update(user, name, lastName, phoneNumber, email)
+    return await this.updateUserProfile.update(user, name, lastName, phoneNumber, email)
   }
 }
 

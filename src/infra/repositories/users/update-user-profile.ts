@@ -1,7 +1,7 @@
 import User from '../../database/models/user'
 import MissingParamError from '../../../utils/erros/missing-param-error'
 
-class UpdateUser {
+class UpdateUserProfile {
   async update (user: User, name: string, lastName:string, phoneNumber: string, email: string) {
     if(!user) 
       throw new MissingParamError(`user`)
@@ -20,10 +20,7 @@ class UpdateUser {
       phoneNumber,
       email
     })
-
-    //return user.reload()
-    
   }
 }
 
-export default new UpdateUser()
+export default new UpdateUserProfile()
