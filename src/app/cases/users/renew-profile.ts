@@ -1,6 +1,5 @@
-import { loadUserById } from '../../../infra/repositories/users'
+import { loadUserById, updateUserProfile } from '../../../infra/repositories/users'
 import uuidv4Validator from '../../../utils/validators/uuidv4-validator'
-import updateUserProfile from '../../../infra/repositories/users/update-user-profile'
 import { NotFoundError } from '../../../utils/http/erros'
 
 class RenewProfile {
