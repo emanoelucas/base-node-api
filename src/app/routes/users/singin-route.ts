@@ -4,6 +4,7 @@ import requestValidator from '../../../utils/validators/request-body-validator'
 import authentication from '../../cases/users/authentication'
 import HttpResponse from './../../../utils/http/response'
 import tokenGeneration from '../../cases/users/token-generation'
+import { setUserParameter } from '../../../infra/repositories/users'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -13,10 +14,12 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     requestValidator(requiredParams, body)
 
     const user = await authentication.auth(body.email, body.password)
-    const accessToken = await tokenGeneration.generate({ sub: user.id }) 
-    
+    const accessToken = tokenGeneration.token({ sub: user.id }) 
+    const refreshToken = tokenGeneration.refreshToken({ sub: user.id })
+    await setUserParameter.set(user, 'refreshToken', refreshToken)
+
     res.send(
-      HttpResponse.sucess( { message: 'You are logged in', data: {user, accessToken} } )
+      HttpResponse.sucess( { message: 'You are logged in', data: {user, tokens: {accessToken, refreshToken}} } )
     )
 
   } catch (error) {

@@ -29,6 +29,10 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
+      refresh_token: {
+        type: Sequelize.DataTypes.TEXT,
+        allowNull: true,
+      },
       created_at: {
         type: Sequelize.DataTypes.DATE,
         allowNull: false,

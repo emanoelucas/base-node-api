@@ -10,6 +10,7 @@ class User extends Model {
 	public phoneNumber!: string
 	public email!: string
   public password!: string
+	public refreshToken!: string | null
 
 	public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -53,6 +54,10 @@ User.init({
 		type: DataTypes.STRING(128),
 		allowNull: false
 	},
+	refreshToken: {
+		type: DataTypes.TEXT,
+		allowNull: true
+	},
 	fullName: {
 		type: DataTypes.VIRTUAL,
 		get() {
@@ -73,7 +78,8 @@ User.init({
 		attributes: {
 			exclude: [
 				'password',
-				'deleted_at'
+				'deleted_at',
+				'refreshToken'
 			]
 		}
 	}
