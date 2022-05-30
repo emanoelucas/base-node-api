@@ -13,7 +13,7 @@ class SetUserParameter {
     const data: any = {}
     data[`${paramName}`] = paramValue
     
-    await (await user.update(data)).reload()
+    return user.update(data)
   
   }
 }

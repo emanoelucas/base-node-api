@@ -15,7 +15,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const user = await renewProfile.renew(id, body.name, body.lastName, body.phoneNumber, body.email)
 
     res.send(
-      HttpResponse.sucess( { message: 'Data updated', data: {user} } )
+      HttpResponse.sucess( { message: 'Data updated', data: {user: user.retrievableData()} } )
     )
 
   } catch (error) {

@@ -15,9 +15,7 @@ class LoadUserByEmail {
       Object.assign(defaultRule, options)
     }
 
-    const user = await User.findOne(defaultRule)
-
-    return user
+    return await User.findOne(defaultRule)
   }
 }
 

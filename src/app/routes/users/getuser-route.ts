@@ -9,7 +9,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const user = await retrieve.run(id)
 
     res.send(
-      HttpResponse.sucess( { message: 'User retrieved', data: {user} } )
+      HttpResponse.sucess( { message: 'User retrieved', data: {user: user.retrievableData()} } )
     )
 
   } catch (error) {

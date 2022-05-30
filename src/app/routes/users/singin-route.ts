@@ -19,7 +19,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     await setUserParameter.set(user, 'refreshToken', refreshToken)
 
     res.send(
-      HttpResponse.sucess( { message: 'You are logged in', data: {user, tokens: {accessToken, refreshToken}} } )
+      HttpResponse.sucess( { message: 'You are logged in', data: {user: user.retrievableData(), tokens: {accessToken, refreshToken}} } )
     )
 
   } catch (error) {

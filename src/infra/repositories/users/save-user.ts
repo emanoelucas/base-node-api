@@ -14,15 +14,14 @@ class SaveUser {
     if(!password) 
       throw new MissingParamError(`password`)
 
-    const user = await User.create({
+    return await User.create({
       name,
       email,
       lastName,
       phoneNumber,
       password
     })
-    
-    return await user.reload()
+
   }
 }
 

@@ -15,9 +15,8 @@ class LoadUserById {
       Object.assign(defaultRule, options)
     }
 
-    const user = await User.findOne(defaultRule)
+    return await User.findOne(defaultRule)
 
-    return user
   }
 }
 

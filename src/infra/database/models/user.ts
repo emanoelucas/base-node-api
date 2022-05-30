@@ -10,12 +10,23 @@ class User extends Model {
 	public phoneNumber!: string
 	public email!: string
   public password!: string
+	public fullName!: string
 	public refreshToken!: string | null
 
 	public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
   public readonly deletedAt!: Date;
-
+	
+	retrievableData () {
+		return {
+			id: this.id,
+			name: this.name,
+			lastName: this.lastName,
+			phoneNumber: this.phoneNumber,
+			email: this.email,
+			fullName: this.fullName
+		}
+	}
 }
 
 User.init({
@@ -74,6 +85,7 @@ User.init({
 	createdAt: 'created_at',
 	updatedAt: 'updated_at',
 	deletedAt: 'deleted_at',
+	/*
 	defaultScope: {
 		attributes: {
 			exclude: [
@@ -83,6 +95,7 @@ User.init({
 			]
 		}
 	}
+	*/
 })
 
 User.addHook('beforeValidate', (user: User, options) => {

@@ -14,7 +14,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const user = await creation.create(body.name, body.lastName, body.phoneNumber, body.email, body.password, body.repeatPassword)
 
     res.send(
-      HttpResponse.sucess( { message: 'Account created', data: {user} } )
+      HttpResponse.sucess( { message: 'Account created', data: {user: user.retrievableData()} } )
     )
 
   } catch (error) {
