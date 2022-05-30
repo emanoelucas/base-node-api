@@ -6,6 +6,7 @@
 
 ## What is required?
 
+ - [npm](https://docs.npmjs.com/cli/v8/commands/npm-install)
  - [Docker](https://docs.docker.com/engine/install/)
  - [Docker Compose](https://docs.docker.com/compose/install/)
 
