@@ -2,13 +2,21 @@ import jwt from 'jsonwebtoken'
 
 class TokenGeneration {
   
-  async generate (data: any) {
-    
-    const secret = process.env.JWT_SECRET as string
-    
-    return jwt.sign(data, secret, {
-      expiresIn: Number(process.env.JWT_EXPIRATION_TIME),
-      algorithm: 'HS256'
+  private secret: string
+  
+  constructor () {
+    this.secret = process.env.JWT_SECRET as string
+  }
+
+  token (data: any) {
+    return jwt.sign(data, this.secret, {
+      expiresIn: Number(process.env.JWT_TOKEN_LIFE)
+    })
+  }
+
+  refreshToken (data: any) {
+    return jwt.sign(data, this.secret, {
+      expiresIn: Number(process.env.JWT_REFRESH_TOKEN_LIFE)
     })
   }
 }
