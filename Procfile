@@ -1,1 +1,2 @@
-web: cross-env SERVER_HOST=heroku && npx sequelize-cli db:migrate && npm run start
+web: npm run start
+release: cross-env SERVER_HOST=heroku
