@@ -103,4 +103,28 @@ Run seeds
 $ docker-compose run node npx sequelize db:seed:all
 ```
 
-## Deploy
+## Deploy on Heroku
+
+1. Download and install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
+
+2. Create an app on [Heroku](https://dashboard.heroku.com/apps).
+
+3. Log in
+
+```console
+$ heroku login
+```
+
+4. Use Git to clone your app source code to your local machine.
+
+```console
+$ heroku git:clone -a {{APP_NAME}}
+```
+
+5. Deploy them to Heroku using Git.
+
+```console
+$ git push heroku master
+```
+
+> The application will be runnin on https://{{APP_NAME}}.herokuapp.com/
