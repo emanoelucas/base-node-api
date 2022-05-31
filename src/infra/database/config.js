@@ -21,7 +21,7 @@ const sslConfig = {
     }
   }
 }
-if (process.env.NODE_ENV === 'production')
+if (process.env.SERVER_HOST === 'heroku')
   Object.assign(config, sslConfig)
 
 module.exports = config
