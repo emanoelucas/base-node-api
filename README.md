@@ -109,19 +109,23 @@ $ docker-compose run node npx sequelize db:seed:all
 
 2. Create an app on [Heroku](https://dashboard.heroku.com/apps).
 
-3. Log in
+3. Install Heroku Postgres add-ons
+
+4. Set up the enviroment variables on settings options
+
+5. Log in
 
 ```console
 $ heroku login
 ```
 
-4. Use Git to clone your app source code to your local machine.
+6. Use Git to clone your app source code to your local machine.
 
 ```console
 $ heroku git:clone -a {{APP_NAME}}
 ```
 
-5. Deploy them to Heroku using Git.
+7. Deploy them to Heroku using Git.
 
 ```console
 $ git push heroku master
