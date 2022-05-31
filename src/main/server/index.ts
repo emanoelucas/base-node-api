@@ -27,7 +27,7 @@ class App {
 			this.initRoutes()
 			this.errorHandler()
 
-			return this.app.listen(process.env.PORT)    
+			return this.app.listen(process.env.PORT || 3000)    
 
 		} catch (error) {
 			throw error
