@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   host: process.env.DB_HOSTNAME,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
@@ -10,11 +10,18 @@ module.exports = {
     timestamps: true,
     underscored: true,
     underscoredAll: true
-  },
+  }
+}
+
+const sslConfig = {
   dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false
     }
- }
+  }
 }
+if (process.env.NODE_ENV === 'production')
+  Object.assign(config, sslConfig)
+
+module.exports = config
