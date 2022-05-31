@@ -1,2 +1,1 @@
-web: npm run start
-release: cross-env SERVER_HOST=heroku
+web: npx sequelize db:migrate && npm run start
