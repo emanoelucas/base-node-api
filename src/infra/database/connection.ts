@@ -16,7 +16,7 @@ const sslConfig = {
   }
 }
 
-if (process.env.NODE_ENV === 'production')
+if (process.env.SERVER_HOST === 'heroku')
   Object.assign(options, sslConfig)
 
 export const connection = new Sequelize(
