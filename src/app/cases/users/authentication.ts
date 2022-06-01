@@ -28,7 +28,7 @@ class Authentication {
     if (!validPassword)
       throw new BadRequestError('Password incorrect')
 
-    return user.reload()
+    return user
   }
 }
 

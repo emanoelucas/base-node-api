@@ -111,7 +111,11 @@ $ docker-compose run node npx sequelize db:seed:all
 
 3. Install Heroku Postgres add-ons
 
-4. Set up the enviroment variables on settings options
+4. Set up the enviroment variables: go to Heroku app page and then settings options or use Heroku CLI
+
+```console
+$ heroku config:set ENV_VARIABLE_NAME=value
+```
 
 5. Log in
 
