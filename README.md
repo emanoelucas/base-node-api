@@ -50,6 +50,12 @@ $ docker-compose up
 
 > make sure you have the right permissions to use docker
 
+7. Run migrations
+
+```console
+$ docker-compose run node npx sequelize db:migrate
+```
+
 ## Docker dev commands
 
 
@@ -133,7 +139,7 @@ $ heroku pg:credentials:url DATABASE
 
 > output example: dbname=xxxxxxxx host="link" port=5432 user=yyyyyyyy password=zzzzzzzz sslmode=require
 
-6. Set up the enviroment variables: 
+6. Set up the enviroment variables as in the .env file, remember to use heroku postgres database credentials instead and set 'SERVER_HOST=heroku'. 
   
  - you can use UI https://dashboard-classic.heroku.com/apps/{{APP_NAME}}/settings
  
