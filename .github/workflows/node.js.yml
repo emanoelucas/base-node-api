@@ -1,0 +1,59 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI/CD
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "base-node-api-00"
+          heroku_email: "lucasrodrigues52@gmail.com"
+          healthcheck: "https://base-node-api-00.herokuapp.com/check"
+          delay: 7
+        env:
+          HD_DB_DATABASE: ${{secrets.DB_DATABASE}}
+          HD_DB_USERNAME: ${{secrets.DB_USERNAME}}
+          HD_DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+          HD_DB_HOSTNAME: ${{secrets.DB_HOSTNAME}}
+          HD_DB_PORT: ${{secrets.DB_PORT}}
+          HD_JWT_SECRET: ${{secrets.JWT_SECRET}}
+          HD_PROJECT_NAME: "base-node-api"
+          HD_DB_DIALECT: "postgres"
+          HD_PORT: "3000"
+          HD_TZ: "America/Sao_Paulo"
+          HD_HEADER_TIME_RESPONSE: "X-initial-time"
+          HD_HEADER_AUTHORIZATION_TOKEN: "Authorization"
+          HD_JWT_TOKEN_LIFE: "3600"
+          HD_JWT_REFRESH_TOKEN_LIFE: "86400"
+          HD_ENCRYPTER_SALT: "10"
+          HD_SERVER_HOST: "heroku"
