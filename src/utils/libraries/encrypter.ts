@@ -6,10 +6,12 @@ const Salt = Number(process.env.ENCRYPTER_SALT)
 
 class Encrypter {
   
-  async hash (password: string) {
+  async hash (password: string, salt: number | string) {
     if(!password) 
       throw new MissingParamError('password')
-    return await bcrypt.hash(password, Salt)
+    if(!salt) 
+      throw new MissingParamError('hash salt')
+    return await bcrypt.hash(password, salt)
   }
 
   async compare (password: string, passwordHash: string) {
