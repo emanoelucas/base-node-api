@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken'
 import MissingParamError from '../erros/missing-param-error'
 
-export default (token: string) => {
+export default (token: string, secret: string) => {
 
   if (!token)
     throw new MissingParamError('token')
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET as string)
+    jwt.verify(token, secret)
     return true
   } catch (err) {
     return false
