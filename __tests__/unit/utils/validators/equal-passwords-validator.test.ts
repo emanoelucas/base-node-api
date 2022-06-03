@@ -1,5 +1,5 @@
-import MissingParamError from '../../../src/utils/erros/missing-param-error'
-import equalPasswordsValidator from '../../../src/utils/validators/equal-passwords-validator'
+import MissingParamError from '../../../../src/utils/erros/missing-param-error'
+import equalPasswordsValidator from '../../../../src/utils/validators/equal-passwords-validator'
 
 describe('Equal passwords validator', () => {
 	it('should throw if no password is provided', () => {
