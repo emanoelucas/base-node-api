@@ -5,6 +5,8 @@ export default (token: string, secret: string) => {
 
   if (!token)
     throw new MissingParamError('token')
+  if (!secret)
+    throw new MissingParamError('secret')
 
   try {
     jwt.verify(token, secret)
