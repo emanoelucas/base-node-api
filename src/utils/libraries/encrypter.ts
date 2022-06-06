@@ -14,12 +14,12 @@ class Encrypter {
     return await bcrypt.hash(password, salt)
   }
 
-  async compare (password: string, passwordHash: string) {
+  async compare (password: string, hashedPassword: string) {
     if(!password) 
       throw new MissingParamError('password')
-    if(!passwordHash) 
+    if(!hashedPassword) 
       throw new MissingParamError('password hash')
-    return await bcrypt.compare(password, passwordHash)
+    return await bcrypt.compare(password, hashedPassword)
   }
 }
 
