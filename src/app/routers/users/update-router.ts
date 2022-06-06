@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 
 import requestValidator from '../../../utils/validators/request-body-validator'
-import HttpResponse from './../../../utils/http/response'
-import renewProfile from '../../cases/users/renew-profile'
+import HttpResponse from '../../../utils/http/response'
+import renewProfile from '../../services/users/renew-profile'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
