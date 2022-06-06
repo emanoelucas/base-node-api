@@ -30,7 +30,7 @@ class Creation {
     
     this.requiredPasswordChar(password)
 
-    const hashedPassword = await this.encrypter.hash(password)
+    const hashedPassword = await this.encrypter.hash(password, Number(process.env.ENCRYPTER_SALT))
 
     return await this.saveUser.save(name, lastName, phoneNumber, email, hashedPassword)
   }
