@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 
 import requestValidator from '../../../utils/validators/request-body-validator'
-import authentication from '../../cases/users/authentication'
-import HttpResponse from './../../../utils/http/response'
-import tokenGeneration from '../../cases/users/token-generation'
+import authentication from '../../services/users/authentication'
+import HttpResponse from '../../../utils/http/response'
+import tokenGeneration from '../../services/users/token-generation'
 import { setUserParameter } from '../../../infra/repositories/users'
 
 export default async (req: Request, res: Response, next: NextFunction) => {

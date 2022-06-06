@@ -2,11 +2,11 @@ import Router from 'express'
 
 import tokenParser from '../../../main/middlewares/token-parser'
 
-import signUpRoute from './signup-route'
-import signInRoute from './singin-route'
-import getRoute from './getuser-route'
-import updateRoute from './update-route'
-import tokenRoute from './token-route'
+import signUpRoute from './signup-router'
+import signInRoute from './singin-router'
+import getRoute from './getuser-router'
+import updateRoute from './update-router'
+import tokenRoute from './token-router'
 
 const userRoutes = Router()
 

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import retrieve from '../../cases/users/retrieve'
+import retrieve from '../../services/users/retrieve'
 import HttpResponse from '../../../utils/http/response'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
