@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 
 import requestValidator from '../../../utils/validators/request-body-validator'
 import authentication from '../../services/users/authentication'
-import HttpResponse from '../../../utils/http/response'
+import HttpResponse from '../../../utils/http/response/http-response'
 import tokenGeneration from '../../services/users/token-generation'
 import { setUserParameter } from '../../../infra/repositories/users'
 
@@ -19,7 +19,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     await setUserParameter.set(user, 'refreshToken', refreshToken)
 
     res.send(
-      HttpResponse.sucess( { message: 'You are logged in', data: {user: user.retrievableData(), tokens: {accessToken, refreshToken}} } )
+      HttpResponse.success( { message: 'You are logged in', data: {user: user.retrievableData(), tokens: {accessToken, refreshToken}} } )
     )
 
   } catch (error) {

@@ -6,7 +6,7 @@ class HttpResponse {
   
   fail (params: any) {
     
-    if (typeof params !== 'object')
+    if (!params)
       throw new InternalServerError('Invalid fail response pattern')
 
     if (!params.message)
@@ -14,14 +14,14 @@ class HttpResponse {
     
     const response = {
       message: params.message,
-      sucess: false
+      success: false
     }
     return Object.assign(response, params)
     
   }
 
-  sucess (params: any ) {
-    if ( typeof params !== 'object' || !params.message || !params.data )
+  success (params: any ) {
+    if ( !params || !params.message || !params.data )
       throw new InternalServerError('Invalid sucess response pattern')
 
     const defaultResponse: IHttpDefaultResponse = {
