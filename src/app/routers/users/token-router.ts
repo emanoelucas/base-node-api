@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 
 import requestValidator from '../../../utils/validators/request-body-validator'
-import tokenRefresh from '../../services/users/token-refresh'
+import tokenRefresh from '../../cases/users/token-refresh'
 import HttpResponse from '../../../utils/http/response/http-response'
-import tokenGeneration from '../../services/users/token-generation'
+import tokenGeneration from '../../cases/users/token-generation'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {

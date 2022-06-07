@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
 import requestValidator from '../../../utils/validators/request-body-validator'
-import creation from '../../services/users/creation'
+import creation from '../../cases/users/creation'
 import HttpResponse from '../../../utils/http/response/http-response'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
