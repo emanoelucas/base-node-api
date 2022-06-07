@@ -29,7 +29,7 @@ const userDataMock = [
   }
 ]
 
-const UserMock = DBConnectionMock.define('users', {}, { autoQueryFallback: false })
+const UserMock = DBConnectionMock.define('users', {}, { autoQueryFallback: true })
 
 UserMock.$queryInterface.$useHandler((query:string, queryOptions: any, done: any) => {
   if(query === 'findOne') {
