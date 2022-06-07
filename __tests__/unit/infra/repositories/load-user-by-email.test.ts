@@ -1,4 +1,4 @@
-const userMock = require('../../../../__mocks__/user-model')
+const userMock = require('../../../../__mocks__/user-model-mock')
 import { loadUserByEmail } from '../../../../src/infra/repositories/users'
 import MissingParamError from '../../../../src/utils/erros/missing-param-error'
 
