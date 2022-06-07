@@ -6,16 +6,10 @@ class LoadUserById {
     
     if (!id) 
       throw new MissingParamError(`id`)
-    
-    const defaultRule = {
-      where: { id: id }
-    }
-    
-    if (options) {
-      Object.assign(defaultRule, options)
-    }
 
-    return await User.findOne(defaultRule)
+    return await User.findOne({
+      where: { id: id }
+    })
 
   }
 }

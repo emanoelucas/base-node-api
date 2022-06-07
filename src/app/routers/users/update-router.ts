@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 
 import requestValidator from '../../../utils/validators/request-body-validator'
-import HttpResponse from '../../../utils/http/response'
-import renewProfile from '../../services/users/renew-profile'
+import HttpResponse from '../../../utils/http/response/http-response'
+import renewProfile from '../../cases/users/renew-profile'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -15,7 +15,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const user = await renewProfile.renew(id, body.name, body.lastName, body.phoneNumber, body.email)
 
     res.send(
-      HttpResponse.sucess( { message: 'Data updated', data: {user: user.retrievableData()} } )
+      HttpResponse.success( { message: 'Data updated', data: {user: user.retrievableData()} } )
     )
 
   } catch (error) {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
 import { IHttpError } from './../../../utils/http/erros/IHttpError'
-import HttpResponse from './../../../utils/http/response'
+import HttpResponse from '../../../utils/http/response/http-response'
 
 export default (error: IHttpError, req: Request, res: Response, next: NextFunction) => {
   

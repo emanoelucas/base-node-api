@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
-import retrieve from '../../services/users/retrieve'
-import HttpResponse from '../../../utils/http/response'
+import retrieve from '../../cases/users/retrieve'
+import HttpResponse from '../../../utils/http/response/http-response'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -9,7 +9,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const user = await retrieve.run(id)
 
     res.send(
-      HttpResponse.sucess( { message: 'User retrieved', data: {user: user.retrievableData()} } )
+      HttpResponse.success( { message: 'User retrieved', data: {user: user.retrievableData()} } )
     )
 
   } catch (error) {

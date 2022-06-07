@@ -5,6 +5,7 @@ const config = {
   database: process.env.DB_DATABASE,
   dialect: process.env.DB_DIALECT,
   port: process.env.DB_PORT,
+  timezone: process.env.TZ,
   logging: false,
   define: {
     timestamps: true,

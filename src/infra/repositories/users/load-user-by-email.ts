@@ -2,20 +2,14 @@ import User from '../../database/models/user'
 import MissingParamError from '../../../utils/erros/missing-param-error'
 
 class LoadUserByEmail {
-  async load (email: string, options?: any) {
+  async load (email: string) {
     
     if (!email) 
       throw new MissingParamError(`email`)
-    
-    const defaultRule = {
-      where: { email: email }
-    }
-    
-    if (options) {
-      Object.assign(defaultRule, options)
-    }
 
-    return await User.findOne(defaultRule)
+    return await User.findOne({
+      where: { email: email }
+    })
   }
 }
 
