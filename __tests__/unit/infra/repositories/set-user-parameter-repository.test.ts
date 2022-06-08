@@ -1,5 +1,5 @@
 const userMock = require('../../../../__mocks__/user-model-mock')
-import { setUserParameter } from '../../../../src/infra/repositories/users'
+import { setUserParameterRepository } from '../../../../src/infra/repositories/users'
 import User from '../../../../src/infra/database/models/user'
 import MissingParamError from '../../../../src/utils/erros/missing-param-error'
 
@@ -11,14 +11,14 @@ describe('set user parameter repository', () => {
 	
   it('should throw if no user is provided', async () => {
     const user: any = ''
-    const promise = setUserParameter.set(user, 'paramName', 'paramValue')
+    const promise = setUserParameterRepository.set(user, 'paramName', 'paramValue')
     expect(promise).rejects.toThrow(new MissingParamError('user'))
 	})
   it('should throw if no paramName is provided', async () => {
     const mockId = '03c22d45-4083-4224-a416-c8bdb4535470'
     const mockUser = await User.findOne({where: {id: mockId}})
     if(mockUser) {
-      const promise = setUserParameter.set(mockUser, '', 'new_last_name')
+      const promise = setUserParameterRepository.set(mockUser, '', 'new_last_name')
       expect(promise).rejects.toThrow(new MissingParamError('paramName'))
     }
 	})
@@ -26,7 +26,7 @@ describe('set user parameter repository', () => {
     const mockId = '03c22d45-4083-4224-a416-c8bdb4535470'
     const mockUser = await User.findOne({where: {id: mockId}})
     if(mockUser) {
-      const promise = setUserParameter.set(mockUser, 'paramName', '')
+      const promise = setUserParameterRepository.set(mockUser, 'paramName', '')
       expect(promise).rejects.toThrow(new MissingParamError('paramValue'))
     }
 	})
@@ -41,7 +41,7 @@ describe('set user parameter repository', () => {
 
       newMockUser.refreshToken = 'new_refesh_token'
 
-      const updatedMockUser = await setUserParameter.set(mockUser, 'refreshToken', newMockUser.refreshToken)
+      const updatedMockUser = await setUserParameterRepository.set(mockUser, 'refreshToken', newMockUser.refreshToken)
       expect(updatedMockUser).toBe(newMockUser)
 
     }
