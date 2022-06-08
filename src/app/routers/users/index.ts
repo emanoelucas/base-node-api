@@ -10,10 +10,10 @@ import tokenRoute from './token-router'
 
 const userRoutes = Router()
 
-userRoutes.post('/signup', signUpRoute)
-userRoutes.post('/signin', signInRoute)
-userRoutes.get('', tokenParser, getRoute)
-userRoutes.put('', tokenParser, updateRoute)
-userRoutes.post('/token', tokenRoute)
+userRoutes.post('/signup', signUpRoute.sign)
+userRoutes.post('/signin', signInRoute.sign)
+userRoutes.get('', tokenParser, getRoute.get)
+userRoutes.put('', tokenParser, updateRoute.update)
+userRoutes.post('/token', tokenRoute.get)
 
 export default userRoutes
