@@ -5,10 +5,11 @@ import { setupMiddlewares } from './../middlewares'
 import { setupRoutes } from './../routes'
 import generalErrorHandler from './erros/general-error-handler'
 import notFoundErrorHandler from './erros/not-found-error-handler'
-import { logger } from '../../utils/logger'
+import logger from '../../utils/logger'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
+
 class App {
 
 	private app: Express
@@ -43,7 +44,7 @@ class App {
 		this.app.use(generalErrorHandler)
 	}
 
-	public initLogger = () => this.app.use(logger)
+	public initLogger = () => this.app.use(logger.logs)
 
 	public initDatabase = async () => await database.connect()
 

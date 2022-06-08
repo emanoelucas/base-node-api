@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import requestValidator from '../../../utils/validators/request-body-validator'
+import { requestBodyValidator } from '../../../utils/validators'
 import HttpResponse from '../../../utils/http/response/http-response'
 import renewProfile from '../../cases/users/renew-profile'
 
@@ -8,7 +8,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const requiredParams = ['name', 'lastName', 'phoneNumber', 'email']
     const body = req.body
-    requestValidator(requiredParams, body)
+    requestBodyValidator.validate(requiredParams, body)
 
     const id = req.user.sub
 

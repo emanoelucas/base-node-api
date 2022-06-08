@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 
-import requestValidator from '../../../utils/validators/request-body-validator'
+import { requestBodyValidator } from '../../../utils/validators'
 import authentication from '../../cases/users/authentication'
 import HttpResponse from '../../../utils/http/response/http-response'
-import tokenGeneration from '../../cases/users/token-generation'
+import tokenGeneration from '../../../utils/libraries/token-generation'
 import { setUserParameter } from '../../../infra/repositories/users'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
@@ -11,7 +11,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const requiredParams = ['email', 'password']
     const body = req.body
   
-    requestValidator(requiredParams, body)
+    requestBodyValidator.validate(requiredParams, body)
 
     const user = await authentication.auth(body.email, body.password)
     const accessToken = tokenGeneration.token({ sub: user.id }) 

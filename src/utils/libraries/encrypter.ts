@@ -2,8 +2,6 @@ import bcrypt from 'bcrypt'
 
 import MissingParamError from './../erros/missing-param-error'
 
-const Salt = Number(process.env.ENCRYPTER_SALT)
-
 class Encrypter {
   
   async hash (password: string, salt: number | string) {
