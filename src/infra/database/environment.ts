@@ -4,5 +4,6 @@ export const environment = {
 	PASSWORD: process.env.DB_PASSWORD || 'postgres',
 	HOSTNAME: process.env.DB_HOSTNAME || 'localhost',
 	PORT: process.env.DB_PORT || 5432,
-	DIALECT: process.env.DB_DIALECT || 'postgres'
+	DIALECT: process.env.DB_DIALECT || 'postgres',
+	TZ: process.env.TZ
 }

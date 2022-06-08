@@ -4,7 +4,8 @@ import { environment } from './environment'
 const options: Options = {
   host: environment.HOSTNAME,
   dialect: environment.DIALECT as Dialect,
-  port: environment.PORT as number
+  port: environment.PORT as number,
+  timezone: environment.TZ
 }
 
 const sslConfig = {

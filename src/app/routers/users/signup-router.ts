@@ -1,20 +1,20 @@
 import { Request, Response, NextFunction } from 'express'
 
-import requestValidator from '../../../utils/validators/request-body-validator'
+import { requestBodyValidator }from '../../../utils/validators'
 import creation from '../../cases/users/creation'
-import HttpResponse from './../../../utils/http/response'
+import HttpResponse from '../../../utils/http/response/http-response'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const requiredParams = ['name', 'lastName', 'phoneNumber', 'email', 'password', 'repeatPassword']
     const body = req.body
   
-    requestValidator(requiredParams, body)
+    requestBodyValidator.validate(requiredParams, body)
 
     const user = await creation.create(body.name, body.lastName, body.phoneNumber, body.email, body.password, body.repeatPassword)
 
     res.send(
-      HttpResponse.sucess( { message: 'Account created', data: {user: user.retrievableData()} } )
+      HttpResponse.success( { message: 'Account created', data: {user: user.retrievableData()} } )
     )
 
   } catch (error) {

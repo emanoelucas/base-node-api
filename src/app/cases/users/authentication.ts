@@ -13,13 +13,7 @@ class Authentication {
 
   async auth (email: string, password: string) {
 
-    const includePassword = {
-        attributes: {
-        include: ['password']
-      }
-    }
-
-    const user = await this.loadUserByEmail.load(email, includePassword)
+    const user = await this.loadUserByEmail.load(email)
     if (!user) {
       throw new NotFoundError('User not found')
     }

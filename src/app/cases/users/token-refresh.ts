@@ -1,6 +1,6 @@
 
 import { loadUserById } from '../../../infra/repositories/users'
-import jwtTokenValidator from '../../../utils/validators/jwt-token-validator'
+import { jwtTokenValidator } from '../../../utils/validators'
 import { NotFoundError, UnauthorizedError } from "../../../utils/http/erros"
 
 class TokenRefresh {
@@ -17,11 +17,10 @@ class TokenRefresh {
       throw new NotFoundError('User not found')
     }
     
-    const validRefreshToken = jwtTokenValidator(token)
+    const validRefreshToken = jwtTokenValidator.validate(token, process.env.JWT_SECRET as string)
     if(!validRefreshToken)
       throw new UnauthorizedError('Invalid refresh token, please log in again.')
 
-    console.log(user)
     if (!user.refreshToken || user.refreshToken !== token)
       throw new UnauthorizedError('Invalid user refresh token')
     
