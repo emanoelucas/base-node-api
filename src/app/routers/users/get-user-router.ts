@@ -1,14 +1,19 @@
 import { Request, Response, NextFunction } from 'express'
 
-import retrieve from '../../cases/users/retrieve'
+import GetUser from '../../cases/users/get-user'
 import HttpResponse from '../../../utils/http/response/http-response'
 
 class GetUserRouter{
+
+  constructor(
+    private getUser: GetUser
+  ){ }
+
   get = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
       const id = req.user.sub
-      const user = await retrieve.run(id)
+      const user = await this.getUser.get(id)
   
       res.send(
         HttpResponse.success( { message: 'User retrieved', data: {user: user.retrievableData()} } )
@@ -20,4 +25,4 @@ class GetUserRouter{
   }
 }
 
-export default new GetUserRouter()
+export default GetUserRouter

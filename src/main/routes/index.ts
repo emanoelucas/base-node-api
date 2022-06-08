@@ -1,6 +1,6 @@
 import { Express, Request, Response } from 'express'
 
-import userRoutes from '../../app/routers/users'
+import userRoutes from '../../app/composers/users'
 
 export const setupRoutes = (app: Express) => {
   app.use('/user', userRoutes)
