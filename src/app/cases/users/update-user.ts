@@ -18,8 +18,8 @@ class UpdateUser {
     if (!user)
       throw new NotFoundError('User not found')
     
-    const knownEmail = await this.loadUserByEmailRepository.load(email)
-    if (knownEmail)
+    const knownUser = await this.loadUserByEmailRepository.load(email)
+    if (knownUser && knownUser.email !== user.email)
       throw new BadRequestError('Email already in use')
 
     return await this.updateUserRepository.update(user, name, lastName, phoneNumber, email)
