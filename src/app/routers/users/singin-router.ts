@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 import { requestBodyValidator } from '../../../utils/validators'
 import authentication from '../../cases/users/authentication'
 import HttpResponse from '../../../utils/http/response/http-response'
-import tokenGeneration from '../../cases/users/token-generation'
+import tokenGeneration from '../../../utils/libraries/token-generation'
 import { setUserParameter } from '../../../infra/repositories/users'
 
 export default async (req: Request, res: Response, next: NextFunction) => {

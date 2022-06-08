@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 import { requestBodyValidator } from '../../../utils/validators'
 import tokenRefresh from '../../cases/users/token-refresh'
 import HttpResponse from '../../../utils/http/response/http-response'
-import tokenGeneration from '../../cases/users/token-generation'
+import tokenGeneration from '../../../utils/libraries/token-generation'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
