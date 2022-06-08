@@ -1,5 +1,5 @@
 import { loadUserById, loadUserByEmail, updateUserProfile } from '../../../infra/repositories/users'
-import uuidv4Validator from '../../../utils/validators/uuidv4-validator'
+import { uuidv4Validator } from '../../../utils/validators'
 import { BadRequestError, NotFoundError } from '../../../utils/http/erros'
 
 class RenewProfile {
@@ -14,7 +14,7 @@ class RenewProfile {
 
   async renew (id: string, name: string, lastName:string, phoneNumber: string, email: string) {
     
-    uuidv4Validator(id)
+    uuidv4Validator.validate(id)
     const user = await this.loadUserById.load(id)
     if (!user)
       throw new NotFoundError('User not found')
