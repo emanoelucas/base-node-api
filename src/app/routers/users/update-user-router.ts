@@ -1,21 +1,24 @@
 import { Request, Response, NextFunction } from 'express'
-
-import { requestBodyValidator } from '../../../utils/validators'
 import HttpResponse from '../../../utils/http/response/http-response'
-import renewProfile from '../../cases/users/renew-profile'
+import UpdateUser from '../../cases/users/update-user'
+import { IRequestBodyValidator } from '../../../utils/validators/interfaces'
+class UpdateUserRouter {
 
-class UpdateRouter {
+  constructor (
+    private updateUser: UpdateUser,
+    private requestBodyValidator: IRequestBodyValidator
+  ) { }
 
   update = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
       const requiredParams = ['name', 'lastName', 'phoneNumber', 'email']
       const body = req.body
-      requestBodyValidator.validate(requiredParams, body)
+      this.requestBodyValidator.validate(requiredParams, body)
   
       const id = req.user.sub
   
-      const user = await renewProfile.renew(id, body.name, body.lastName, body.phoneNumber, body.email)
+      const user = await this.updateUser.update(id, body.name, body.lastName, body.phoneNumber, body.email)
   
       res.send(
         HttpResponse.success( { message: 'Data updated', data: {user: user.retrievableData()} } )
@@ -27,4 +30,4 @@ class UpdateRouter {
   }
 }
 
-export default new UpdateRouter()
+export default UpdateUserRouter
