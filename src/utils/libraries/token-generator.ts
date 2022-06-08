@@ -14,7 +14,7 @@ class TokenGeneration {
 
   token (data: any) {
     if (!data) 
-      return new MissingParamError('No jwt payload provided')
+      throw new MissingParamError('No jwt payload provided')
     
     return jwt.sign(data, this.secret, {
         expiresIn: this.accessTokenLife
@@ -24,7 +24,7 @@ class TokenGeneration {
 
   refreshToken (data: any) {
     if (!data)
-      return new MissingParamError('No jwt payload provided')
+      throw new MissingParamError('No jwt payload provided')
     
     return jwt.sign(data, this.secret, {
         expiresIn: this.refreshTokenLife

@@ -1,13 +1,13 @@
-import loadUserByEmail from "./load-user-by-email"
-import saveUser from "./save-user"
-import loadUserById from "./load-user-by-id"
-import updateUserProfile from "./update-user-profile"
-import setUserParameter from "./set-user-parameter"
+import loadUserByEmailRepository from "./load-user-by-email-repository"
+import saveUserRepository from "./save-user-repository"
+import loadUserByIdRepository from "./load-user-by-id-repository"
+import updateUserProfileRepository from "./update-user-repository"
+import setUserParameterRepository from "./set-user-parameter-repository"
 
 export {
-  loadUserByEmail,
-  saveUser,
-  loadUserById,
-  updateUserProfile,
-  setUserParameter
+  loadUserByEmailRepository,
+  saveUserRepository,
+  loadUserByIdRepository,
+  updateUserProfileRepository,
+  setUserParameterRepository
 }
