@@ -14,7 +14,7 @@ describe('Required Password validator', () => {
     const password = 'abcdefgh'
     expect(() => { passwordCharactersValidator.validate(password) }).toThrow(BadRequestError)
 	})
-  it('should proceed if it has 8 or more characters with at least 1 number and one letter', () => {
+  it('should proceed if the requirements are set', () => {
     const password = 'abcdefgh12'
     expect(passwordCharactersValidator.validate(password)).toBeUndefined()
 	})

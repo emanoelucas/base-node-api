@@ -109,7 +109,7 @@ Run seeds
 $ docker-compose run node npx sequelize db:seed:all
 ```
 
-## Deploy on Heroku
+## Manually Deploying on Heroku
 
 1. Download and install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 

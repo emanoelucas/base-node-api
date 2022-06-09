@@ -1,25 +1,23 @@
-const userMock = require('../../../../__mocks__/user-model-mock')
+const { UserModelMock, userDataMock } = require('../../../../__mocks__/user-model-mock')
 import { loadUserByIdRepository } from '../../../../src/infra/repositories/users'
 import MissingParamError from '../../../../src/utils/erros/missing-param-error'
 
-jest.mock('./../../../../src/infra/database/models/user', () => {
-  return userMock
-})
+jest.mock('./../../../../src/infra/database/models/user', () => UserModelMock )
 
 describe('Load user by id repository', () => {
 	it('should return a user if is found', async () => {
-    const mockId = '03c22d45-4083-4224-a416-c8bdb4535470'
-    const user = await loadUserByIdRepository.load(mockId)
-    expect(user?.id).toBe(mockId)
+    const id = userDataMock.id
+    const user = await loadUserByIdRepository.load(id)
+    expect(user?.id).toBe(id)
 	})
   it('should return null no user is found', async () => {
-    const mockId = 'wrong_id'
-    const user = await loadUserByIdRepository.load(mockId)
+    const id = 'wrong_id'
+    const user = await loadUserByIdRepository.load(id)
     expect(user).toBeNull()
 	})
   it('should throw if no id is provided', async () => {
-    const mockId = ''
-    const promise = loadUserByIdRepository.load(mockId)
+    const id = ''
+    const promise = loadUserByIdRepository.load(id)
     expect(promise).rejects.toThrow(new MissingParamError('id'))
 	})
 })
