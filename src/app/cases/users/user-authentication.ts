@@ -13,7 +13,7 @@ class UserAuthentication {
 
   async auth (email: string, password: string) {
 
-    const user = await this.loadUserByEmailRepository.load(email)
+    let user = await this.loadUserByEmailRepository.load(email)
     if (!user) {
       throw new NotFoundError('User not found')
     }
@@ -24,7 +24,7 @@ class UserAuthentication {
 
     const accessToken = this.tokenGeneration.token({ sub: user.id }) 
     const refreshToken = this.tokenGeneration.refreshToken({ sub: user.id })
-    await this.setUserParameterRepository.set(user, 'refreshToken', refreshToken)
+    user = await this.setUserParameterRepository.set(user, 'refreshToken', refreshToken)
     
     return {
       user, accessToken, refreshToken
