@@ -1,11 +1,9 @@
-const userMock = require('../../../../__mocks__/user-model-mock')
+const { UserModelMock } = require('../../../../__mocks__/user-model-mock')
 import { updateUserRepository } from '../../../../src/infra/repositories/users'
 import User from '../../../../src/infra/database/models/user'
 import MissingParamError from '../../../../src/utils/erros/missing-param-error'
 
-jest.mock('./../../../../src/infra/database/models/user', () => {
-  return userMock
-})
+jest.mock('./../../../../src/infra/database/models/user', () => UserModelMock )
 
 describe('update user profile repository', () => {
 	
