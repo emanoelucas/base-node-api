@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express'
 
 import GetUser from '../../cases/users/get-user'
-import HttpResponse from '../../../utils/http/response/http-response'
-
+import IHttpResponse from '../../../utils/http/response/interfaces/IHttpResponse'
 class GetUserRouter{
 
   constructor(
-    private getUser: GetUser
+    private getUser: GetUser,
+    private httpResponse: IHttpResponse
   ){ }
 
   get = async (req: Request, res: Response, next: NextFunction) => {
@@ -16,7 +16,7 @@ class GetUserRouter{
       const user = await this.getUser.get(id)
   
       res.send(
-        HttpResponse.success( { message: 'User retrieved', data: {user: user.retrievableData()} } )
+        this.httpResponse.success( { message: 'User retrieved', data: {user: user.retrievableData()} } )
       )
   
     } catch (error) {

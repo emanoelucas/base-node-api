@@ -1,4 +1,3 @@
-import { IHttpDefaultResponse } from "./IHttpDefaultResponse"
 import { InternalServerError } from "../erros"
 import MissingParamError from "../../erros/missing-param-error"
 
@@ -24,7 +23,7 @@ class HttpResponse {
     if ( !params || !params.message || !params.data )
       throw new InternalServerError('Invalid sucess response pattern')
 
-    const defaultResponse: IHttpDefaultResponse = {
+    const defaultResponse = {
       message: params.message,
       data: params.data,
       success: true

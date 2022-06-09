@@ -4,13 +4,17 @@ import UserTokenRefreshRouter from "../../routers/users/user-token-refresh-route
 import { loadUserByIdRepository } from "../../../infra/repositories/users"
 import { tokenGenerator } from '../../../utils/libraries'
 import { jwtTokenValidator, requestBodyValidator } from "../../../utils/validators"
+import httpResponse from '../../../utils/http/response/http-response'
 
 const userTokenRefresh = new UserTokenRefresh(
   loadUserByIdRepository, jwtTokenValidator, tokenGenerator
 )
 
 const userTokenRefreshRouter = new UserTokenRefreshRouter(
-  userTokenRefresh, requestBodyValidator
+  userTokenRefresh, requestBodyValidator, httpResponse
 )
 
-export default userTokenRefreshRouter
+export {
+  userTokenRefreshRouter,
+  userTokenRefresh
+}

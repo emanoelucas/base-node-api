@@ -5,13 +5,17 @@ import { loadUserByEmailRepository, saveUserRepository } from '../../../infra/re
 import { equalPasswordsValidator, passwordCharactersValidator } from '../../../utils/validators'
 import { encrypter } from '../../../utils/libraries'
 import { requestBodyValidator } from "../../../utils/validators"
+import httpResponse from '../../../utils/http/response/http-response'
 
 const createUser = new CreateUser(
   loadUserByEmailRepository, saveUserRepository, encrypter, equalPasswordsValidator, passwordCharactersValidator
 )
 
 const createUserRouter = new CreateUserRouter(
-  createUser, requestBodyValidator
+  createUser, requestBodyValidator, httpResponse
 )
 
-export default createUserRouter
+export {
+  createUserRouter,
+  createUser
+}
