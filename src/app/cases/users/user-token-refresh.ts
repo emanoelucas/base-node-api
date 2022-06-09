@@ -26,7 +26,7 @@ class UserTokenRefresh {
     if (!user.refreshToken || user.refreshToken !== token)
       throw new UnauthorizedError('Invalid user refresh token')
 
-    const accessToken = this.tokenGenerator.refreshToken({ sub: user.id }) 
+    const accessToken = this.tokenGenerator.token({ sub: user.id }) 
     
     return { user, accessToken }
   }
