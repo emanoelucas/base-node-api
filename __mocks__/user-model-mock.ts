@@ -29,9 +29,9 @@ const userDataMock = [
   }
 ]
 
-const UserMock = DBConnectionMock.define('users', {}, { autoQueryFallback: true })
+const UserModelMock = DBConnectionMock.define('users', {}, { autoQueryFallback: true })
 
-UserMock.$queryInterface.$useHandler((query:string, queryOptions: any, done: any) => {
+UserModelMock.$queryInterface.$useHandler((query:string, queryOptions: any, done: any) => {
   if(query === 'findOne') {
     
     const search = queryOptions[0].where
@@ -40,9 +40,14 @@ UserMock.$queryInterface.$useHandler((query:string, queryOptions: any, done: any
     if (filters.length === 1) {
       const filter = filters.toString()
       const user = userDataMock.find( (user: any) => user[`${filter}`] === search[`${filter}`]) 
-      return user ? UserMock.build(user) : null
+      return user ? UserModelMock.build(user) : null
     }
     // TODO more than 1 filter search
   }
 })
-export = UserMock
+
+export = {
+  UserModelMock,
+  userDataMock: UserModelMock.build(userDataMock[0]),
+  userDataMock2: UserModelMock.build(userDataMock[1])
+}
