@@ -1,14 +1,15 @@
 import { Request, Response, NextFunction } from 'express'
 
 import { IRequestBodyValidator }from '../../../utils/validators/interfaces'
+import IHttpResponse from '../../../utils/http/response/interfaces/IHttpResponse'
 import CreateUser from '../../cases/users/create-user'
-import HttpResponse from '../../../utils/http/response/http-response'
 
 class CreateUserRouter {
 
   constructor (
     private createUser: CreateUser,
-    private requestBodyValidator: IRequestBodyValidator
+    private requestBodyValidator: IRequestBodyValidator,
+    private httpResponse: IHttpResponse
   ) {}
 
   sign = async (req: Request, res: Response, next: NextFunction) => {
@@ -20,11 +21,11 @@ class CreateUserRouter {
       this.requestBodyValidator.validate(requiredParams, body)
   
       const user = await this.createUser.create(body.name, body.lastName, body.phoneNumber, body.email, body.password, body.repeatPassword)
-  
-      res.send(
-        HttpResponse.success( { message: 'Account created', data: {user: user.retrievableData()} } )
-      )
-  
+      
+      const response = this.httpResponse.success( { message: 'Account created', data: {user: user.retrievableData()} } )
+
+      res.send(response)
+
     } catch (error) {
       next(error)
     }
