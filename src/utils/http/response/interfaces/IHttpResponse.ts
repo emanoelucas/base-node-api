@@ -1,4 +1,5 @@
+import IHttpDefaultResponse from "./IHttpDefaultResponse"
 export default interface IHttpResponse {
-  fail (params: any): any
-  success (params: any): any
+  fail (params: any): IHttpDefaultResponse
+  success (params: any): IHttpDefaultResponse
 }
