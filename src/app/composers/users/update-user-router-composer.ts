@@ -6,11 +6,16 @@ import { requestBodyValidator, uuidv4Validator } from "../../../utils/validators
 import httpResponse from '../../../utils/http/response/http-response'
 
 const updateUser = new UpdateUser(
-  loadUserByIdRepository, loadUserByEmailRepository, updateUserRepository, uuidv4Validator
+  loadUserByIdRepository, 
+  loadUserByEmailRepository, 
+  updateUserRepository, 
+  uuidv4Validator
 )
 
 const updateUserRouter = new UpdateUserRouter(
-  updateUser, requestBodyValidator, httpResponse
+  updateUser, 
+  requestBodyValidator, 
+  httpResponse
 )
 
 export {

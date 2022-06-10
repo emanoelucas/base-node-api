@@ -6,10 +6,14 @@ import { uuidv4Validator } from '../../../utils/validators'
 import httpResponse from '../../../utils/http/response/http-response'
 
 const getUser = new GetUser(
-  loadUserByIdRepository, uuidv4Validator
+  loadUserByIdRepository, 
+  uuidv4Validator
 )
 
-const getUserRouter = new GetUserRouter(getUser, httpResponse)
+const getUserRouter = new GetUserRouter(
+  getUser, 
+  httpResponse
+)
 
 export {
   getUserRouter,

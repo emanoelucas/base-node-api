@@ -7,11 +7,15 @@ import { jwtTokenValidator, requestBodyValidator } from "../../../utils/validato
 import httpResponse from '../../../utils/http/response/http-response'
 
 const userTokenRefresh = new UserTokenRefresh(
-  loadUserByIdRepository, jwtTokenValidator, tokenGenerator
+  loadUserByIdRepository, 
+  jwtTokenValidator, 
+  tokenGenerator
 )
 
 const userTokenRefreshRouter = new UserTokenRefreshRouter(
-  userTokenRefresh, requestBodyValidator, httpResponse
+  userTokenRefresh, 
+  requestBodyValidator, 
+  httpResponse
 )
 
 export {

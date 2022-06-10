@@ -8,11 +8,17 @@ import { requestBodyValidator } from "../../../utils/validators"
 import httpResponse from '../../../utils/http/response/http-response'
 
 const createUser = new CreateUser(
-  loadUserByEmailRepository, saveUserRepository, encrypter, equalPasswordsValidator, passwordCharactersValidator
+  loadUserByEmailRepository, 
+  saveUserRepository, 
+  encrypter, 
+  equalPasswordsValidator, 
+  passwordCharactersValidator
 )
 
 const createUserRouter = new CreateUserRouter(
-  createUser, requestBodyValidator, httpResponse
+  createUser, 
+  requestBodyValidator, 
+  httpResponse
 )
 
 export {

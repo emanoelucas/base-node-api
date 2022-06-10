@@ -7,11 +7,16 @@ import { requestBodyValidator } from "../../../utils/validators"
 import httpResponse from '../../../utils/http/response/http-response'
 
 const userAuthentication = new UserAuthentication(
-  loadUserByEmailRepository, setUserParameterRepository, encrypter, tokenGenerator
+  loadUserByEmailRepository, 
+  setUserParameterRepository, 
+  encrypter, 
+  tokenGenerator
 )
 
 const userAuthenticationRouter = new UserAuthenticationRouter(
-  userAuthentication, requestBodyValidator, httpResponse
+  userAuthentication, 
+  requestBodyValidator, 
+  httpResponse
 )
 
 export {
