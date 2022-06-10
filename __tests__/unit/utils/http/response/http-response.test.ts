@@ -18,6 +18,7 @@ describe ('http response', () => {
     const result = httpResponse.fail(params)
     expect(result).toStrictEqual({
       message: params.message,
+      data: {},
       success: false
     })
   })
@@ -30,6 +31,7 @@ describe ('http response', () => {
     expect(result).toStrictEqual({
       message: params.message,
       success: false,
+      data: {},
       code: '400'
     })
   })
