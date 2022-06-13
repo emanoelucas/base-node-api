@@ -117,19 +117,17 @@ describe ('User Token Refresh Case', () => {
     expect(promise).rejects.toThrow(Error)
   })
 
-  it('should throws if tokenGenerator throws', async () => {
+  it('should return the refreshed token', async () => {
     
     const userTokenRefresh = buildCase()
-    
+    const accessToken = 'access_token'
+
     loadUserByIdRepositoryMock.load.mockResolvedValue(userDataMock)
     jwtTokenValidatorMock.validate.mockReturnValue(true)
-    tokenGeneratorMock.token.mockReturnValue('access_token')
+    tokenGeneratorMock.token.mockReturnValue(accessToken)
 
     const promise = runCase(userTokenRefresh)
-    expect(promise).resolves.toStrictEqual({
-      user: userDataMock,
-      accessToken: 'access_token'
-    })
+    expect(promise).resolves.toBe(accessToken)
   })
 
 })
