@@ -28,7 +28,7 @@ class UserTokenRefresh {
 
     const accessToken = this.tokenGenerator.token({ sub: user.id }) 
     
-    return { user, accessToken }
+    return accessToken
   }
 }
 
