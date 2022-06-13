@@ -2,7 +2,13 @@
 
 ## Description
 
-**Node API using express, sequelize and docker. All set up, ready to be used.**
+**Node REST API using SOLID principles.**
+
+**Built with [Express](https://github.com/expressjs/express#readme), [Sequelize](https://github.com/sequelize/sequelize#readme) and [Jest](https://github.com/facebook/jest#readme).**
+
+**Running locally with [Docker](https://www.docker.com/) and CI/CD integration deploying on [Heroku](https://www.heroku.com/).**
+
+**All set up, ready to fly.**
 
 ## What is required?
 
