@@ -21,10 +21,9 @@ class UpdateUserRouter {
       const id = req.user.sub
   
       const user = await this.updateUser.update(id, body.name, body.lastName, body.phoneNumber, body.email)
-  
-      res.send(
-        this.httpResponse.success( { message: 'Data updated', data: {user: user.retrievableData()} } )
-      )
+      const response = this.httpResponse.success( { message: 'Data updated', data: {user: user.retrievableData()} } )
+      
+      res.send(response)
   
     } catch (error) {
       next(error)
