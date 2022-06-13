@@ -1,14 +1,15 @@
 import { Request, Response, NextFunction } from 'express'
 
 import Authentication from '../../cases/users/user-authentication'
-import HttpResponse from '../../../utils/http/response/http-response'
 import { IRequestBodyValidator } from '../../../utils/validators/interfaces'
+import IHttpResponse from '../../../utils/http/response/interfaces/IHttpResponse'
 
 class UserAuthenticationRouter {
   
   constructor (
     private authentication: Authentication,
-    private requestBodyValidator: IRequestBodyValidator
+    private requestBodyValidator: IRequestBodyValidator,
+    private httpResponse: IHttpResponse
   ) {}
   
   sign = async (req: Request, res: Response, next: NextFunction) => {
@@ -19,10 +20,17 @@ class UserAuthenticationRouter {
       this.requestBodyValidator.validate(requiredParams, body)
   
       const {user, accessToken, refreshToken} = await this.authentication.auth(body.email, body.password)
-      
-      res.send(
-        HttpResponse.success( { message: 'You are logged in', data: {user: user.retrievableData(), tokens: {accessToken, refreshToken}} } )
+     
+      const response = this.httpResponse.success( 
+        { 
+          message: 'You are logged in', 
+          data: {
+            user: user.retrievableData(), 
+            tokens: {accessToken, refreshToken}
+          } 
+        } 
       )
+      res.send(response)
   
     } catch (error) {
       next(error)

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const sequelizeMock = require('sequelize-mock-v5')
 
 const DBConnectionMock = new sequelizeMock()
@@ -29,7 +30,22 @@ const userDataMock = [
   }
 ]
 
-const UserModelMock = DBConnectionMock.define('users', {}, { autoQueryFallback: true })
+const UserModelMock = DBConnectionMock.define('users', {}, {
+    autoQueryFallback: true,
+    instanceMethods: {
+      retrievableData: function () {
+        return {
+          id: this.id,
+          name: this.name,
+          lastName: this.lastName,
+          phoneNumber: this.phoneNumber,
+          email: this.email,
+          fullName: this.fullName
+        }
+      }
+    }
+  }
+)
 
 UserModelMock.$queryInterface.$useHandler((query:string, queryOptions: any, done: any) => {
   if(query === 'findOne') {

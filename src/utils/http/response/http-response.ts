@@ -1,7 +1,6 @@
-import { IHttpDefaultResponse } from "./IHttpDefaultResponse"
 import { InternalServerError } from "../erros"
 import MissingParamError from "../../erros/missing-param-error"
-
+import IHttpDefaultResponse from "./interfaces/IHttpDefaultResponse"
 class HttpResponse {
   
   fail (params: any) {
@@ -12,11 +11,13 @@ class HttpResponse {
     if (!params.message)
       throw new MissingParamError('Missing fail response message')
     
-    const response = {
+    const defaultResponse: IHttpDefaultResponse = {
       message: params.message,
+      data: {},
       success: false
     }
-    return Object.assign(response, params)
+    Object.assign(defaultResponse, params)
+    return defaultResponse
     
   }
 
@@ -30,7 +31,8 @@ class HttpResponse {
       success: true
     }
 
-    return Object.assign(defaultResponse, params)
+    Object.assign(defaultResponse, params)
+    return defaultResponse
   }
 }
 
