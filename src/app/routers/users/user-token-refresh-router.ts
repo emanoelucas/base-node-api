@@ -2,14 +2,14 @@ import { Request, Response, NextFunction } from 'express'
 
 import { IRequestBodyValidator } from '../../../utils/validators/interfaces'
 import UserTokenRefresh from '../../cases/users/user-token-refresh'
-import { ITokenGenerator } from '../../../utils/libraries/interfaces'
-import HttpResponse from '../../../utils/http/response/http-response'
+import IHttpResponse from '../../../utils/http/response/interfaces/IHttpResponse'
 
 class UserTokenRefreshRouter {
 
   constructor (
     private userTokenRefresh: UserTokenRefresh,
-    private requestBodyValidator: IRequestBodyValidator
+    private requestBodyValidator: IRequestBodyValidator,
+    private httpResponse: IHttpResponse
   ) { }
 
   get = async (req: Request, res: Response, next: NextFunction) => {
@@ -20,11 +20,10 @@ class UserTokenRefreshRouter {
     
       this.requestBodyValidator.validate(requiredParams, body)
   
-      const { user, accessToken } = await this.userTokenRefresh.get(body.id, body.refreshToken)
+      const accessToken = await this.userTokenRefresh.get(body.id, body.refreshToken)
   
-      res.send(
-        HttpResponse.success( { message: 'Token refreshed', data: {accessToken} } )
-      )
+      const response = this.httpResponse.success( { message: 'Token refreshed', data: {accessToken} } )
+      res.send(response)
   
     } catch (error) {
       next(error)

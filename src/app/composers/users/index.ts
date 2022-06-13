@@ -2,11 +2,11 @@ import Router from 'express'
 
 import tokenParser from '../../../main/middlewares/token-parser'
 
-import createUserRouter from './create-user-router-composer'
-import getUserRouter from './get-user-router-composer'
-import updateUserRouter from './update-user-router-composer'
-import userAuthenticationRouter from './user-authentication-router-composer'
-import userTokenRefreshRouter from './user-token-refresh-router-composer'
+import { createUserRouter }  from './create-user-router-composer'
+import { getUserRouter } from './get-user-router-composer'
+import { updateUserRouter } from './update-user-router-composer'
+import { userAuthenticationRouter } from './user-authentication-router-composer'
+import { userTokenRefreshRouter } from './user-token-refresh-router-composer'
 
 
 const userRoutes = Router()
