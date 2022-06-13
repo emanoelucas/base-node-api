@@ -4,8 +4,6 @@ import { Request, Response } from 'express'
 import CreateUserRouter from '../../../../../src/app/routers/users/create-user-router'
 import { createUser } from '../../../../../src/app/composers/users/create-user-router-composer'
 
-import { BadRequestError } from '../../../../../src/utils/http/erros'
-
 import { requestBodyValidator } from '../../../../../src/utils/validators'
 import httpResponse from '../../../../../src/utils/http/response/http-response'
 
@@ -95,7 +93,7 @@ describe ('Create User Router', () => {
     })
     
     requestBodyValidatorMock.validate.mockImplementation()
-    createUserMock.create.mockImplementation(userDataMock)
+    createUserMock.create.mockResolvedValue(userDataMock)
     httpResponseMock.success.mockImplementation(() => { throw new Error() })
 
     const createUserRouter = buildRouter()
@@ -122,7 +120,7 @@ describe ('Create User Router', () => {
       success: true
     }
     requestBodyValidatorMock.validate.mockImplementation()
-    createUserMock.create.mockImplementation(userDataMock)
+    createUserMock.create.mockResolvedValue(userDataMock)
     httpResponseMock.success.mockReturnValue(successResponse)
 
     const createUserRouter = buildRouter()
