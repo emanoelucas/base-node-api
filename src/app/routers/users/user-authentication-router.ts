@@ -20,10 +20,17 @@ class UserAuthenticationRouter {
       this.requestBodyValidator.validate(requiredParams, body)
   
       const {user, accessToken, refreshToken} = await this.authentication.auth(body.email, body.password)
-      
-      res.send(
-        this.httpResponse.success( { message: 'You are logged in', data: {user: user.retrievableData(), tokens: {accessToken, refreshToken}} } )
+     
+      const response = this.httpResponse.success( 
+        { 
+          message: 'You are logged in', 
+          data: {
+            user: user.retrievableData(), 
+            tokens: {accessToken, refreshToken}
+          } 
+        } 
       )
+      res.send(response)
   
     } catch (error) {
       next(error)
