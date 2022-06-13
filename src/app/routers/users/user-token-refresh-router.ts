@@ -20,11 +20,10 @@ class UserTokenRefreshRouter {
     
       this.requestBodyValidator.validate(requiredParams, body)
   
-      const { user, accessToken } = await this.userTokenRefresh.get(body.id, body.refreshToken)
+      const accessToken = await this.userTokenRefresh.get(body.id, body.refreshToken)
   
-      res.send(
-        this.httpResponse.success( { message: 'Token refreshed', data: {accessToken} } )
-      )
+      const response = this.httpResponse.success( { message: 'Token refreshed', data: {accessToken} } )
+      res.send(response)
   
     } catch (error) {
       next(error)
