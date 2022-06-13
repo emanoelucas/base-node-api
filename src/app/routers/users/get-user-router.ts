@@ -15,9 +15,8 @@ class GetUserRouter{
       const id = req.user.sub
       const user = await this.getUser.get(id)
   
-      res.send(
-        this.httpResponse.success( { message: 'User retrieved', data: {user: user.retrievableData()} } )
-      )
+      const response = this.httpResponse.success( { message: 'User retrieved', data: {user: user.retrievableData()} } )
+      res.send(response)
   
     } catch (error) {
       next(error)
